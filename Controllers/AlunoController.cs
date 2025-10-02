@@ -20,6 +20,7 @@ namespace Api1.Controllers
         }
 
         [HttpPost]
+        [HttpPost("criarAluno")]
         public IActionResult Post(Aluno aluno)
         {
             int id = repo.Inserir(aluno.Nome, aluno.Idade, aluno.Email, aluno.DataNascimento);
@@ -32,10 +33,12 @@ namespace Api1.Controllers
 
 
         [HttpGet]
+        [HttpGet("todosAlunos")]
         public IActionResult GetAll() => Ok(repo.Listar());
 
 
         [HttpPut]
+        [HttpPut("atualizarAluno")]
         public IActionResult Put(Aluno aluno)
         {
             int linhasAfetadas = repo.Atualizar(aluno.Id, aluno.Nome, aluno.Idade, aluno.Email, aluno.DataNascimento);
@@ -48,6 +51,7 @@ namespace Api1.Controllers
 
 
         [HttpDelete]
+        [HttpDelete("deletarALuno")]
         public IActionResult Delete(int id)
         {
             int linhasAfetadas = repo.Excluir(id);
@@ -60,6 +64,7 @@ namespace Api1.Controllers
 
 
         [HttpPost]
+        [HttpPost("buscarAlunos")]
         public IActionResult GetAlunos(BuscaRequest busca) => Ok(repo.Buscar(busca.Proprieadade, busca.Valor));
     }
 }
